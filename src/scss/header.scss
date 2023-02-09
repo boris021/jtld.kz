@@ -1,0 +1,276 @@
+//====================================================================================================
+.header {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	width: 100%;
+	z-index: 800;
+	
+	.top-header {
+		background: $white;
+		position: relative;
+		z-index: 600;
+		&__container {
+			min-height: rem(120);
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: rem(10);
+			@media (max-width: $tablet) {
+				justify-content: flex-start;
+			}
+			@media (max-width: $mobileSmall) {
+				min-height: rem(90);
+			}
+		}
+
+		&__logo {
+			display: flex;
+			align-items: center;
+			gap: rem(10);
+		}
+
+		&__logo-image {
+			max-height: rem(80);
+			@media (max-width: $mobileSmall) {
+				max-height: rem(60);
+			}
+		}
+
+		&__logo-text,
+		&__address {
+			font-weight: 600;
+			line-height: math.div(20, 16);
+			@media (max-width: $laptop) {
+				font-size: rem(14);
+			}
+		}
+
+		&__logo-text {
+			max-width: rem(275);
+			@media (max-width: $laptop) {
+				max-width: rem(190);
+			}
+			@media (max-width: em(600)) {
+				display: none;
+			}
+		}
+
+		&__address {
+			display: flex;
+			align-items: center;
+			gap: rem(5);
+		}
+
+		&__address-image {
+		}
+
+		&__address-text {
+			display: flex;
+			flex-direction: column;
+			gap: rem(10);
+		}
+
+		&__address-text-top {
+		}
+
+		&__address-text-bottom {
+		}
+
+		&__sotials {
+			display: flex;
+			gap: rem(25);
+			@media (max-width: $laptop) {
+				gap: rem(5);
+			}
+		}
+
+		&__sotials-image {
+		}
+
+		&__phones {
+			display: flex;
+			flex-direction: column;
+			gap: rem(10);
+			font-weight: 700;
+			font-size: rem(24);
+			line-height: math.div(30, 24);
+			color: $blue;
+			@media (max-width: $laptop) {
+				font-size: rem(18);
+			}
+			@media (max-width: $tablet) {
+				margin: 0 0 0 auto;
+				margin: 0 rem(10) 0 auto;
+			}
+		}
+
+		&__phones-first, &__phones-second {
+			@media (any-hover: hover){
+				transition: color $transition-time;
+				&:hover{
+					color: #114CD1;
+				}
+			}
+		}
+	}
+
+	.bottom-header {
+		background: $blue;
+		position: relative;
+		z-index: 600;
+
+		&__nav {
+		}
+
+		&__list {
+			display: flex;
+			justify-content: center;
+		}
+
+		&__item {
+			color: $white;
+			a {
+				display: inline-block;
+				padding: rem(16) rem(20);
+				@media (any-hover: hover){
+					transition: background $transition-time;
+					&:hover{
+						background: rgba($white, .1);
+					}
+				}
+			}
+		}
+	}
+	.menu-header {
+		display: none;
+		@media (max-width: $tablet) {
+			overflow: auto;
+			display: block;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba($white, 0.8);
+			backdrop-filter: blur(rem(1));
+			z-index: 500;
+			transform: translate(100%, 0);
+			transition: transform $transition-time;
+			.menu-open & {
+				transform: translate(-0%, 0);
+			}
+			padding-top: rem(120 + 48);
+			@media (max-width: $mobile) {
+				padding-top: rem(120);
+			}
+			@media (max-width: $mobileSmall) {
+				padding-top: rem(90);
+			}
+			.bottom-header {
+				&__nav {
+				}
+				&__list {
+					flex-direction: column;
+				}
+				&__item {
+					color: #000;
+					font-size: rem(20);
+					a {
+						padding: rem(16) rem(0);
+						width: 100%;
+					}
+				}
+			}
+			.top-header {
+				&__address {
+				}
+
+				&__address-image {
+				}
+
+				&__address-text {
+				}
+
+				&__address-text-top {
+				}
+
+				&__address-text-bottom {
+				}
+
+				&__sotials {
+					gap: rem(30);
+				}
+
+				&__sotials-image {
+				}
+
+				&__logo-text,
+				&__address {
+					font-size: rem(18);
+				}
+			}
+			&__wrapper {
+				display: flex;
+				flex-direction: column;
+				gap: rem(30);
+				padding: rem(30) 0;
+			}
+		}
+	}
+}
+
+//====================================================================================================
+
+//Burger
+
+.icon-menu {
+	display: none;
+	@media (max-width: $tablet) {
+		display: block;
+		position: relative;
+		width: rem(30);
+		height: rem(18);
+		z-index: 5;
+		@media (any-hover: none) {
+			cursor: default;
+		}
+		span,
+		&::before,
+		&::after {
+			content: "";
+			transition: all 0.3s ease 0s;
+			right: 0;
+			position: absolute;
+			width: 100%;
+			height: rem(2);
+			background-color: #000;
+		}
+		&::before {
+			top: 0;
+		}
+		&::after {
+			bottom: 0;
+		}
+		span {
+			top: calc(50% - rem(1));
+		}
+		.menu-open & {
+			span {
+				width: 0;
+			}
+			&::before,
+			&::after {
+			}
+			&::before {
+				top: calc(50% - rem(1));
+				transform: rotate(-45deg);
+			}
+			&::after {
+				bottom: calc(50% - rem(1));
+				transform: rotate(45deg);
+			}
+		}
+	}
+}

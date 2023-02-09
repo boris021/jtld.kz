@@ -2,15 +2,15 @@
 <html lang="en">
 
 <head>
-	<title>@@title</title>
+	<title>Транспортные грузоперевозки по странам СНГ, Евросоюза и городам РК</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230209153129">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230209155545">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
-	<script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU&_v=20230209153129"></script>
-	<!-- <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac1571a61bf348c46e8eed24a3f2594b6fbae53d6a8aef95c2f94c93245de1cd0&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true&_v=20230209153129"></script> -->
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU&_v=20230209155545"></script>
+	<!-- <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac1571a61bf348c46e8eed24a3f2594b6fbae53d6a8aef95c2f94c93245de1cd0&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true&_v=20230209155545"></script> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -656,6 +656,15 @@
 				</div>
 			</div>
 		</footer>
+
+
+		<div type="button" class="callback-bt">
+			<a href="https://api.whatsapp.com/send?phone=77717016635" target="_blank" rel="nofollow">
+				<div class="text-call">
+					<img src="img/icon_whatsapp.svg">
+				</div>
+			</a>
+		</div>
 	</div>
 	<div id="form" aria-hidden="true" class="popup popup-form">
 		<div class="popup__wrapper">
@@ -700,7 +709,51 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20230209153129"></script>
+	<script src="js/app.min.js?_v=20230209155545"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vivus/0.4.6/vivus.min.js?_v=20230209155545" integrity="sha512-oUUeA7VTcWBqUJD/VYCBB4VeIE0g1pg5aRMiSUOMGnNNeCLRS39OlkcyyeJ0hYx2h3zxmIWhyKiUXKkfZ5Wryg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css?_v=20230209155545">
+
+	<script>
+		window.addEventListener("DOMContentLoaded", function() {
+			[].forEach.call(document.querySelectorAll('.tel'), function(input) {
+				var keyCode;
+
+				function mask(event) {
+					event.keyCode && (keyCode = event.keyCode);
+					var pos = this.selectionStart;
+					if (pos < 3) event.preventDefault();
+					var matrix = "+7 (___) ___ ____",
+						i = 0,
+						def = matrix.replace(/\D/g, ""),
+						val = this.value.replace(/\D/g, ""),
+						new_value = matrix.replace(/[_\d]/g, function(a) {
+							return i < val.length ? val.charAt(i++) || def.charAt(i) : a
+						});
+					i = new_value.indexOf("_");
+					if (i != -1) {
+						i < 5 && (i = 3);
+						new_value = new_value.slice(0, i)
+					}
+					var reg = matrix.substr(0, this.value.length).replace(/_+/g,
+						function(a) {
+							return "\\d{1," + a.length + "}"
+						}).replace(/[+()]/g, "\\$&");
+					reg = new RegExp("^" + reg + "$");
+					if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value =
+						new_value;
+					if (event.type == "blur" && this.value.length < 5) this.value = ""
+				}
+
+				input.addEventListener("input", mask, false);
+				input.addEventListener("focus", mask, false);
+				input.addEventListener("blur", mask, false);
+				input.addEventListener("keydown", mask, false)
+
+			});
+
+		});
+	</script>
 </body>
 
 </html>
